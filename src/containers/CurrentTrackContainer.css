@@ -1,0 +1,17 @@
+.current-track-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.track-art {
+	margin-bottom: 20px;
+	cursor: pointer;
+	position: relative;
+	transition: filter .3s;
+}
+
+.track-art:hover {
+	filter: brightness(70%);
+}

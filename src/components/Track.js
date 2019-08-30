@@ -2,7 +2,7 @@ import React from "react";
 import './Track.css';
 import Typography from "@material-ui/core/Typography";
 
-const defaultImage = 'https://via.placeholder.com/100?text=No+Image';
+export const defaultImage = 'https://via.placeholder.com/100?text=No+Image';
 
 const Track = ({track, onPlay}) => {
 	return (
