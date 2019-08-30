@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import {fetchTracks} from "./store/actions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {makeStyles} from "@material-ui/core";
-import {addRecent, persistRecent, loadRecents} from "./store/actionCreators";
+import {addRecent, persistRecent, loadRecent} from "./store/actionCreators";
 
 const useStyles = makeStyles({
 	progress: {
@@ -22,16 +22,13 @@ const useStyles = makeStyles({
 
 const tracksPerPage = 6;
 
-function App({tracks, searchTrack, loadRecets}) {
+function App({tracks, searchTrack, loadRecent, recentSearches}) {
 	const classes = useStyles();
 	const [pageNumber, setPageNumber] = useState(1);
 
 	useEffect(() => {
-
-			loadRecets();
-
-	}, []);
-
+		loadRecent();
+	}, [loadRecent]);
 
 	const handleSearch = (value) => {
 		searchTrack(value, pageNumber, tracksPerPage);
@@ -54,14 +51,15 @@ function App({tracks, searchTrack, loadRecets}) {
 								<TrackListContainer tracks={tracks.tracks}/>}
 					</div>
 					<CurrentTrackContainer/>
-					<RecentSearchesContainer/>
+					<RecentSearchesContainer terms={recentSearches}/>
 				</div>
 			</>
 	);
 }
 
 const mapStateToProps = (state) => ({
-	tracks: state.tracks
+	tracks: state.tracks,
+	recentSearches: state.recentSearches.terms
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -70,8 +68,8 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(persistRecent());
 		dispatch(fetchTracks(term, pageNumber, tracksPerPage))
 	},
-	loadRecets: () => {
-		dispatch(loadRecents())
+	loadRecent: () => {
+		dispatch(loadRecent())
 	}
 });
 

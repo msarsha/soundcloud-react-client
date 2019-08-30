@@ -11,3 +11,12 @@
 .track-container:hover {
 	transform: scale(1.05);
 }
+
+.track-details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	text-align: center;
+}

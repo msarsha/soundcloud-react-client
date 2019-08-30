@@ -56,20 +56,19 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 		}
-		case actionTypes.LOAD_RECENTS: {
-			let recents;
+		case actionTypes.LOAD_RECENT: {
+			let recent;
 
 			try {
-				recents = JSON.parse(localStorage.getItem(RECENTS_KEY));
+				recent = JSON.parse(localStorage.getItem(RECENTS_KEY));
 			} catch {
-				recents = [];
+				recent = [];
 			}
-
-			console.log('reducer', recents);
+			
 			return {
 				...state,
 				recentSearches: {
-					terms: recents,
+					terms: recent,
 					loading: false
 				}
 			}

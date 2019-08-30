@@ -1,8 +1,10 @@
 import React from "react";
 
-const RecentSearchesContainer = (props) => {
+const RecentSearchesContainer = ({terms}) => {
 	return (
-			<span>Recent</span>
+			<ul>
+				{terms.map((t, i) => <li key={i}>{t}</li>)}
+			</ul>
 	);
 };
 

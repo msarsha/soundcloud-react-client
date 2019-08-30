@@ -29,6 +29,6 @@ export const persistRecent = (recents) => ({
 	}
 });
 
-export const loadRecents = () => ({
-	type: actionTypes.LOAD_RECENTS
+export const loadRecent = () => ({
+	type: actionTypes.LOAD_RECENT
 });
