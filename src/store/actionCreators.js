@@ -18,7 +18,10 @@ export const tracksLoading = () => ({
 export const addRecent = (term) => ({
 	type: actionTypes.ADD_RECENT,
 	payload: {
-		term
+		term: {
+			term,
+			timestamp: new Date()
+		}
 	}
 });
 

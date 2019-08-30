@@ -38,13 +38,13 @@ const reducer = (state = initialState, action) => {
 			}
 		}
 		case actionTypes.ADD_RECENT: {
-			const currentRecents = [...state.recentSearches.terms];
+			const currentRecent = [...state.recentSearches.terms];
 			let newRecent;
-			if (currentRecents.length === 6) {
-				const sliced = currentRecents.slice(0, 5);
+			if (currentRecent.length === 5) {
+				const sliced = currentRecent.slice(0, 4);
 				newRecent = [action.payload.term, ...sliced];
 			} else {
-				newRecent = [action.payload.term, ...currentRecents]
+				newRecent = [action.payload.term, ...currentRecent]
 			}
 
 			return {
@@ -58,7 +58,11 @@ const reducer = (state = initialState, action) => {
 			let recent;
 
 			try {
-				recent = JSON.parse(localStorage.getItem(RECENTS_KEY));
+				const data = JSON.parse(localStorage.getItem(RECENTS_KEY));
+				if (data)
+					recent = data;
+				else
+					recent = [];
 			} catch {
 				recent = [];
 			}

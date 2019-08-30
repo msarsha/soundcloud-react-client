@@ -22,13 +22,16 @@ const TrackSearch = ({onSearch}) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if (value)
-			onSearch(value)
+		if (value){
+			onSearch(value);
+			setValue('');
+		}
 	};
 
 	return (
 			<form className={classes.container} onSubmit={handleSubmit} noValidate>
 				<TextField
+						autoFocus
 						required
 						className={classes.input}
 						placeholder="Search For Track..."

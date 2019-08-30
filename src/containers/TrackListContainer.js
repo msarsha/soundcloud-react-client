@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 	}
 });
 
-const tracksPerPage = 6;
+export const tracksPerPage = 6;
 
 const TrackListContainer = ({tracks, searchTrack}) => {
 	const classes = useStyles();
