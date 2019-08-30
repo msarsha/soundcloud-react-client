@@ -8,8 +8,7 @@ const initialState = {
 		loading: false
 	},
 	recentSearches: {
-		terms: [],
-		loading: false
+		terms: []
 	},
 	currentTrack: {
 		track: null,
@@ -40,19 +39,18 @@ const reducer = (state = initialState, action) => {
 		}
 		case actionTypes.ADD_RECENT: {
 			const currentRecents = [...state.recentSearches.terms];
-			let newRecents;
+			let newRecent;
 			if (currentRecents.length === 6) {
 				const sliced = currentRecents.slice(0, 5);
-				newRecents = [action.payload.term, ...sliced];
+				newRecent = [action.payload.term, ...sliced];
 			} else {
-				newRecents = [action.payload.term, ...currentRecents]
+				newRecent = [action.payload.term, ...currentRecents]
 			}
 
 			return {
 				...state,
 				recentSearches: {
-					terms: newRecents,
-					loading: false
+					terms: newRecent
 				}
 			}
 		}
@@ -64,12 +62,11 @@ const reducer = (state = initialState, action) => {
 			} catch {
 				recent = [];
 			}
-			
+
 			return {
 				...state,
 				recentSearches: {
-					terms: recent,
-					loading: false
+					terms: recent
 				}
 			}
 		}

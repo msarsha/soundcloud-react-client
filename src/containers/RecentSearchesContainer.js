@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 const RecentSearchesContainer = ({terms}) => {
 	return (
@@ -8,4 +9,8 @@ const RecentSearchesContainer = ({terms}) => {
 	);
 };
 
-export default RecentSearchesContainer;
+const mapStateToProps = (state) => ({
+	terms: state.recentSearches.terms
+});
+
+export default connect(mapStateToProps)(RecentSearchesContainer);

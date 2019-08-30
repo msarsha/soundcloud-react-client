@@ -9,7 +9,7 @@ import RecentSearchesContainer from "./containers/RecentSearchesContainer";
 import {connect} from "react-redux";
 import {loadRecent} from "./store/actionCreators";
 
-function App({tracks, searchTrack, loadRecent, recentSearches}) {
+function App({loadRecent}) {
 	useEffect(() => {
 		loadRecent();
 	}, [loadRecent]);
@@ -25,18 +25,14 @@ function App({tracks, searchTrack, loadRecent, recentSearches}) {
 				</AppBar>
 				<div className="content">
 					<div className="track-list">
-						<TrackListContainer />
+						<TrackListContainer/>
 					</div>
 					<CurrentTrackContainer/>
-					<RecentSearchesContainer terms={recentSearches}/>
+					<RecentSearchesContainer/>
 				</div>
 			</>
 	);
 }
-
-const mapStateToProps = (state) => ({
-	recentSearches: state.recentSearches.terms
-});
 
 const mapDispatchToProps = (dispatch) => ({
 	loadRecent: () => {
@@ -44,4 +40,4 @@ const mapDispatchToProps = (dispatch) => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
