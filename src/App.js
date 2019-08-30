@@ -24,9 +24,7 @@ function App({loadRecent}) {
 					</Toolbar>
 				</AppBar>
 				<div className="content">
-					<div className="track-list">
-						<TrackListContainer/>
-					</div>
+					<TrackListContainer/>
 					<CurrentTrackContainer/>
 					<RecentSearchesContainer/>
 				</div>

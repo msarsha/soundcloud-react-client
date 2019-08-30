@@ -26,7 +26,7 @@ const TrackListContainer = ({tracks, searchTrack}) => {
 	};
 
 	return (
-			<>
+			<div className="track-list">
 				<TrackSearch onSearch={handleSearch}/>
 				{
 					tracks.loading ?
@@ -37,7 +37,7 @@ const TrackListContainer = ({tracks, searchTrack}) => {
 								})}
 							</div>
 				}
-			</>
+			</div>
 	);
 };
 
