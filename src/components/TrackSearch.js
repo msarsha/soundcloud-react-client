@@ -39,7 +39,7 @@ const TrackSearch = ({onSearch}) => {
 						margin="none"
 						variant="outlined"
 				/>
-				<Button variant="outlined" className={classes.button} onClick={handleSubmit}>
+				<Button variant="outlined" className={classes.button} type="submit">
 					Search
 				</Button>
 			</form>

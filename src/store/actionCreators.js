@@ -21,3 +21,14 @@ export const addRecent = (term) => ({
 		term
 	}
 });
+
+export const persistRecent = (recents) => ({
+	type: actionTypes.PERSIST_RECENT,
+	payload: {
+		terms: recents
+	}
+});
+
+export const loadRecents = () => ({
+	type: actionTypes.LOAD_RECENTS
+});

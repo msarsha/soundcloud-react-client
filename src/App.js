@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,7 +11,7 @@ import {connect} from "react-redux";
 import {fetchTracks} from "./store/actions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {makeStyles} from "@material-ui/core";
-import {addRecent} from "./store/actionCreators";
+import {addRecent, persistRecent, loadRecents} from "./store/actionCreators";
 
 const useStyles = makeStyles({
 	progress: {
@@ -22,9 +22,16 @@ const useStyles = makeStyles({
 
 const tracksPerPage = 6;
 
-function App({tracks, searchTrack}) {
+function App({tracks, searchTrack, loadRecets}) {
 	const classes = useStyles();
 	const [pageNumber, setPageNumber] = useState(1);
+
+	useEffect(() => {
+
+			loadRecets();
+
+	}, []);
+
 
 	const handleSearch = (value) => {
 		searchTrack(value, pageNumber, tracksPerPage);
@@ -60,7 +67,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	searchTrack: (term, pageNumber, tracksPerPage) => {
 		dispatch(addRecent(term));
+		dispatch(persistRecent());
 		dispatch(fetchTracks(term, pageNumber, tracksPerPage))
+	},
+	loadRecets: () => {
+		dispatch(loadRecents())
 	}
 });
 
