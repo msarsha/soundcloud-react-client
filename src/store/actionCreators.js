@@ -25,13 +25,20 @@ export const addRecent = (term) => ({
 	}
 });
 
-export const persistRecent = (recents) => ({
+export const persistRecent = (recentSearches) => ({
 	type: actionTypes.PERSIST_RECENT,
 	payload: {
-		terms: recents
+		terms: recentSearches
 	}
 });
 
 export const loadRecent = () => ({
 	type: actionTypes.LOAD_RECENT
+});
+
+export const selectTrack = (track) => ({
+	type: actionTypes.SELECT_TRACK,
+	payload: {
+		track
+	}
 });

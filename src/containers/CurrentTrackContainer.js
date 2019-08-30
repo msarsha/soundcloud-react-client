@@ -1,9 +1,14 @@
 import React from "react";
+import {connect} from "react-redux";
 
-const CurrentTrackContainer = (props) => {
+const CurrentTrackContainer = ({selectedTrack}) => {
 	return (
-			<span>Current</span>
+			selectedTrack ? <span>{selectedTrack.title}</span> : <span>No Track</span>
 	);
 };
 
-export default CurrentTrackContainer;
+const mapStateToProps = (state) => ({
+	selectedTrack: state.currentTrack.track
+});
+
+export default connect(mapStateToProps)(CurrentTrackContainer);

@@ -5,7 +5,7 @@ import TrackSearch from "../components/TrackSearch";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {makeStyles} from "@material-ui/core";
 import {connect} from "react-redux";
-import {addRecent, persistRecent} from "../store/actionCreators";
+import {addRecent, persistRecent, selectTrack} from "../store/actionCreators";
 import {fetchTracks} from "../store/actions";
 
 const useStyles = makeStyles({
@@ -17,12 +17,16 @@ const useStyles = makeStyles({
 
 export const tracksPerPage = 6;
 
-const TrackListContainer = ({tracks, searchTrack}) => {
+const TrackListContainer = ({tracks, searchTrack, playTrack}) => {
 	const classes = useStyles();
 	const [pageNumber, setPageNumber] = useState(1);
 
 	const handleSearch = (value) => {
 		searchTrack(value, pageNumber, tracksPerPage);
+	};
+
+	const handlePlay = (track) => {
+		playTrack(track);
 	};
 
 	return (
@@ -33,7 +37,7 @@ const TrackListContainer = ({tracks, searchTrack}) => {
 							<CircularProgress className={classes.progress}/> :
 							<div className="list-container">
 								{tracks.tracks && tracks.tracks.map((t) => {
-									return <Track key={t.id} track={t}/>
+									return <Track key={t.id} track={t} onPlay={handlePlay}/>
 								})}
 							</div>
 				}
@@ -50,10 +54,10 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(addRecent(term));
 		dispatch(persistRecent());
 		dispatch(fetchTracks(term, pageNumber, tracksPerPage))
+	},
+	playTrack: (track) => {
+		dispatch(selectTrack(track));
 	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackListContainer);
-
-
-

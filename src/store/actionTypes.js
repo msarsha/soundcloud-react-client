@@ -6,3 +6,4 @@ export const ADD_RECENT = 'ADD_RECENT';
 export const PERSIST_RECENT = 'PERSIST_RECENT';
 export const LOAD_RECENT = 'LOAD_RECENT';
 
+export const SELECT_TRACK = 'SELECT_TRACK';

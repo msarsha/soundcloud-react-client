@@ -11,8 +11,7 @@ const initialState = {
 		terms: []
 	},
 	currentTrack: {
-		track: null,
-		loading: false
+		track: null
 	}
 };
 
@@ -59,10 +58,7 @@ const reducer = (state = initialState, action) => {
 
 			try {
 				const data = JSON.parse(localStorage.getItem(RECENTS_KEY));
-				if (data)
-					recent = data;
-				else
-					recent = [];
+				recent = data || [];
 			} catch {
 				recent = [];
 			}
@@ -71,6 +67,14 @@ const reducer = (state = initialState, action) => {
 				...state,
 				recentSearches: {
 					terms: recent
+				}
+			}
+		}
+		case actionTypes.SELECT_TRACK: {
+			return {
+				...state,
+				currentTrack: {
+					track: action.payload.track
 				}
 			}
 		}
