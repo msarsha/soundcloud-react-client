@@ -1,15 +1,59 @@
-import React from "react";
+import React, {useState} from "react";
 import './TrackListContainer.css'
 import Track from "../components/Track";
+import TrackSearch from "../components/TrackSearch";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import {makeStyles} from "@material-ui/core";
+import {connect} from "react-redux";
+import {addRecent, persistRecent} from "../store/actionCreators";
+import {fetchTracks} from "../store/actions";
 
-const TrackListContainer = ({tracks}) => {
+const useStyles = makeStyles({
+	progress: {
+		alignSelf: 'center',
+		marginTop: 50
+	}
+});
+
+const tracksPerPage = 6;
+
+const TrackListContainer = ({tracks, searchTrack}) => {
+	const classes = useStyles();
+	const [pageNumber, setPageNumber] = useState(1);
+
+	const handleSearch = (value) => {
+		searchTrack(value, pageNumber, tracksPerPage);
+	};
+
 	return (
-			<div className="list-container">
-				{tracks && tracks.map((t) => {
-					return <Track key={t.id} track={t}/>
-				})}
-			</div>
+			<>
+				<TrackSearch onSearch={handleSearch}/>
+				{
+					tracks.loading ?
+							<CircularProgress className={classes.progress}/> :
+							<div className="list-container">
+								{tracks.tracks && tracks.tracks.map((t) => {
+									return <Track key={t.id} track={t}/>
+								})}
+							</div>
+				}
+			</>
 	);
 };
 
-export default TrackListContainer;
+const mapStateToProps = (state) => ({
+	tracks: state.tracks
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	searchTrack: (term, pageNumber, tracksPerPage) => {
+		dispatch(addRecent(term));
+		dispatch(persistRecent());
+		dispatch(fetchTracks(term, pageNumber, tracksPerPage))
+	}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrackListContainer);
+
+
+
