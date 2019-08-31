@@ -11,6 +11,7 @@ const CurrentTrackContainer = ({selectedTrack}) => {
 				<>
 					<img className="track-art" src={selectedTrack.artwork_url || defaultImage} alt="selected track art"/>
 					<Typography variant="h4">{selectedTrack.title}</Typography>
+					<Typography variant="subtitle1">{selectedTrack.genre}</Typography>
 				</>
 		);
 	};

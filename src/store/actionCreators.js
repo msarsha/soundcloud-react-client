@@ -13,9 +13,6 @@ export const tracksLoading = () => ({
 	type: actionTypes.TRACKS_LOADING
 });
 
-export const nextPage = () => ({
-	type: actionTypes.NEXT_PAGE
-});
 
 export const addRecent = (term) => ({
 	type: actionTypes.ADD_RECENT,
