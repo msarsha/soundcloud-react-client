@@ -3,7 +3,6 @@ import SC from "../soundcloud";
 
 export const fetchTracks = (term, tracksPerPage) => async dispatch => {
 	dispatch(actionCreators.tracksLoading());
-	console.log(tracksPerPage);
 	const {collection, next_href} = await SC.get('/tracks', {
 		q: term,
 		limit: tracksPerPage,
