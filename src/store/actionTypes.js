@@ -8,3 +8,5 @@ export const LOAD_RECENT = 'LOAD_RECENT';
 
 export const SELECT_TRACK = 'SELECT_TRACK';
 export const CHANGE_LAYOUT = 'CHANGE_LAYOUT';
+
+export const EMBED_TRACK = 'EMBED_TRACK';

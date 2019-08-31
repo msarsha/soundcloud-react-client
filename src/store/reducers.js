@@ -14,7 +14,8 @@ const initialState = {
 		terms: []
 	},
 	currentTrack: {
-		track: null
+		track: null,
+		content: null
 	}
 };
 
@@ -106,9 +107,17 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 		}
+		case actionTypes.EMBED_TRACK: {
+			return {
+				...state,
+				currentTrack: {
+					...state.currentTrack,
+					content: action.payload.content
+				}
+			};
+		}
 		default:
 			return state;
-
 	}
 };
 

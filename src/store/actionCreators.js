@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import {CHANGE_LAYOUT} from "./actionTypes";
 import {LOAD_LAYOUT} from "./actionTypes";
+import {EMBED_TRACK} from "./actionTypes";
 
 export const fetchTracksSuccess = (tracks, term, nextPage = null) => ({
 	type: actionTypes.FETCH_TRACKS_SUCCESS,
@@ -53,4 +54,11 @@ export const changeLayout = (layout) => ({
 
 export const loadLayout = () => ({
 	type: LOAD_LAYOUT
+});
+
+export const embedTrack = (content) => ({
+	type: EMBED_TRACK,
+	payload: {
+		content
+	}
 });

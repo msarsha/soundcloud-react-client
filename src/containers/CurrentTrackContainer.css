@@ -17,3 +17,7 @@
 .track-art:hover {
 	filter: brightness(70%);
 }
+
+.embedded-container {
+	width: 70%;
+}
