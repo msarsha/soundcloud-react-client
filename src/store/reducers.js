@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import {RECENTS_KEY} from "./recentsMiddleware";
+import {LAYOUT_KEY, RECENT_KEY} from "./localStorageMiddleware";
 
 
 const initialState = {
@@ -7,7 +7,8 @@ const initialState = {
 		tracks: [],
 		term: '',
 		loading: false,
-		nextPage: null
+		nextPage: null,
+		layout: 'list'
 	},
 	recentSearches: {
 		terms: []
@@ -24,6 +25,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				tracks: {
+					...state.tracks,
 					tracks: [],
 					term: '',
 					loading: true
@@ -34,6 +36,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				tracks: {
+					...state.tracks,
 					tracks: action.payload.tracks,
 					term: action.payload.term,
 					loading: false,
@@ -62,7 +65,7 @@ const reducer = (state = initialState, action) => {
 			let recent;
 
 			try {
-				const data = JSON.parse(localStorage.getItem(RECENTS_KEY));
+				const data = JSON.parse(localStorage.getItem(RECENT_KEY));
 				recent = data || [];
 			} catch {
 				recent = [];
@@ -80,6 +83,26 @@ const reducer = (state = initialState, action) => {
 				...state,
 				currentTrack: {
 					track: action.payload.track
+				}
+			}
+		}
+		case actionTypes.CHANGE_LAYOUT: {
+			return {
+				...state,
+				tracks: {
+					...state.tracks,
+					layout: action.payload.layout
+				}
+			}
+		}
+		case actionTypes.LOAD_LAYOUT: {
+			const layout = JSON.parse(localStorage.getItem(LAYOUT_KEY)) || state.tracks.layout;
+
+			return {
+				...state,
+				tracks: {
+					...state.tracks,
+					layout
 				}
 			}
 		}

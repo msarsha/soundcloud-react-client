@@ -1,4 +1,6 @@
 import * as actionTypes from './actionTypes';
+import {CHANGE_LAYOUT} from "./actionTypes";
+import {LOAD_LAYOUT} from "./actionTypes";
 
 export const fetchTracksSuccess = (tracks, term, nextPage = null) => ({
 	type: actionTypes.FETCH_TRACKS_SUCCESS,
@@ -40,4 +42,15 @@ export const selectTrack = (track) => ({
 	payload: {
 		track
 	}
+});
+
+export const changeLayout = (layout) => ({
+	type: CHANGE_LAYOUT,
+	payload: {
+		layout
+	}
+});
+
+export const loadLayout = () => ({
+	type: LOAD_LAYOUT
 });

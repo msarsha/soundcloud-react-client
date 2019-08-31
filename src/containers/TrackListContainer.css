@@ -2,3 +2,21 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.track-list-control-panel {
+	display: flex;
+}
+
+.track-list-control-panel .left-side {
+	margin-left: auto;
+}
+
+.list-container {
+	margin-top: 10px;
+}
+
+.list-container.tile {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 10px;
+}

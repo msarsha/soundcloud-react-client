@@ -7,12 +7,12 @@ import TrackListContainer from "./containers/TrackListContainer";
 import CurrentTrackContainer from "./containers/CurrentTrackContainer";
 import RecentSearchesContainer from "./containers/RecentSearchesContainer";
 import {connect} from "react-redux";
-import {loadRecent} from "./store/actionCreators";
+import {loadLayout, loadRecent} from "./store/actionCreators";
 
-function App({loadRecent}) {
+function App({loadData}) {
 	useEffect(() => {
-		loadRecent();
-	}, [loadRecent]);
+		loadData();
+	}, [loadData]);
 
 	return (
 			<>
@@ -33,8 +33,9 @@ function App({loadRecent}) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	loadRecent: () => {
-		dispatch(loadRecent())
+	loadData: () => {
+		dispatch(loadRecent());
+		dispatch(loadLayout());
 	}
 });
 

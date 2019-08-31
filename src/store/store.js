@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-import recentsMiddleware from "./recentsMiddleware";
+import localStorageMiddleware from "./localStorageMiddleware";
 
 export default createStore(
 		reducer,
-		applyMiddleware(thunk, recentsMiddleware)
+		applyMiddleware(thunk, localStorageMiddleware)
 );

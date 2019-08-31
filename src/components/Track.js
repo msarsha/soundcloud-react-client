@@ -4,9 +4,9 @@ import Typography from "@material-ui/core/Typography";
 
 export const defaultImage = 'https://via.placeholder.com/100?text=No+Image';
 
-const Track = ({track, onPlay}) => {
+const Track = ({track, layout, onPlay}) => {
 	return (
-			<div className="track-container" onClick={() => {onPlay(track)}}>
+			<div className={'track-container ' + layout} onClick={() => {onPlay(track)}}>
 				<img src={track.artwork_url || defaultImage} width="100" height="100" alt="track art"/>
 				<div className="track-details">
 					<Typography variant="h5">

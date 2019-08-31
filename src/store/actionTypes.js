@@ -1,3 +1,4 @@
+export var LOAD_LAYOUT = 'LOAD_LAYOUT';
 export const TRACKS_LOADING = 'TRACKS_LOADING';
 export const FETCH_TRACKS_SUCCESS = 'FETCH_TRACKS_SUCCESS';
 
@@ -6,4 +7,4 @@ export const PERSIST_RECENT = 'PERSIST_RECENT';
 export const LOAD_RECENT = 'LOAD_RECENT';
 
 export const SELECT_TRACK = 'SELECT_TRACK';
-export const NEXT_PAGE = 'NEXT_PAGE';
+export const CHANGE_LAYOUT = 'CHANGE_LAYOUT';
