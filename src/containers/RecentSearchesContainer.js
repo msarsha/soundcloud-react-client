@@ -9,7 +9,7 @@ import {fetchTracks} from "../store/actions";
 
 const RecentSearchesContainer = ({terms, searchTrack}) => {
 	const handleSearch = (value) => {
-		searchTrack(value, 1, tracksPerPage);
+		searchTrack(value, tracksPerPage);
 	};
 
 	return (
@@ -36,8 +36,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	searchTrack: (term, pageNumber, tracksPerPage) => {
-		dispatch(fetchTracks(term, pageNumber, tracksPerPage))
+	searchTrack: (term, tracksPerPage) => {
+		dispatch(fetchTracks(term, tracksPerPage))
 	}
 });
 

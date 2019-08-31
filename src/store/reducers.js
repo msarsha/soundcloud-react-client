@@ -5,7 +5,9 @@ import {RECENTS_KEY} from "./recentsMiddleware";
 const initialState = {
 	tracks: {
 		tracks: [],
-		loading: false
+		term: '',
+		loading: false,
+		nextPage: null
 	},
 	recentSearches: {
 		terms: []
@@ -23,6 +25,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				tracks: {
 					tracks: [],
+					term: '',
 					loading: true
 				}
 			}
@@ -32,7 +35,9 @@ const reducer = (state = initialState, action) => {
 				...state,
 				tracks: {
 					tracks: action.payload.tracks,
-					loading: false
+					term: action.payload.term,
+					loading: false,
+					nextPage: action.payload.nextPage
 				}
 			}
 		}

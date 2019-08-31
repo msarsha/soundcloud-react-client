@@ -6,7 +6,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import {makeStyles} from "@material-ui/core";
 import {connect} from "react-redux";
 import {addRecent, persistRecent, selectTrack} from "../store/actionCreators";
-import {fetchTracks} from "../store/actions";
+import {fetchTracks, nextPage} from "../store/actions";
+import IconButton from "@material-ui/core/IconButton";
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles({
 	progress: {
@@ -17,16 +20,19 @@ const useStyles = makeStyles({
 
 export const tracksPerPage = 6;
 
-const TrackListContainer = ({tracks, searchTrack, playTrack}) => {
+const TrackListContainer = ({tracks, searchTrack, playTrack, nextPage}) => {
 	const classes = useStyles();
-	const [pageNumber, setPageNumber] = useState(1);
 
 	const handleSearch = (value) => {
-		searchTrack(value, pageNumber, tracksPerPage);
+		searchTrack(value, tracksPerPage);
 	};
 
 	const handlePlay = (track) => {
 		playTrack(track);
+	};
+
+	const handleNextPage = () => {
+		nextPage();
 	};
 
 	return (
@@ -36,9 +42,19 @@ const TrackListContainer = ({tracks, searchTrack, playTrack}) => {
 					tracks.loading ?
 							<CircularProgress className={classes.progress}/> :
 							<div className="list-container">
-								{tracks.tracks && tracks.tracks.map((t) => {
-									return <Track key={t.id} track={t} onPlay={handlePlay}/>
-								})}
+								{
+									tracks.tracks && tracks.tracks.map((t) => {
+										return <Track key={t.id} track={t} onPlay={handlePlay}/>
+									})
+								}
+								{
+									tracks.nextPage &&
+									<Tooltip title="Next Page" aria-label="add">
+										<IconButton onClick={handleNextPage}>
+											<NavigateNextIcon/>
+										</IconButton>
+									</Tooltip>
+								}
 							</div>
 				}
 			</div>
@@ -50,13 +66,16 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	searchTrack: (term, pageNumber, tracksPerPage) => {
+	searchTrack: (term, tracksPerPage) => {
 		dispatch(addRecent(term));
 		dispatch(persistRecent());
-		dispatch(fetchTracks(term, pageNumber, tracksPerPage))
+		dispatch(fetchTracks(term, tracksPerPage))
 	},
 	playTrack: (track) => {
 		dispatch(selectTrack(track));
+	},
+	nextPage: () => {
+		dispatch(nextPage())
 	}
 });
 

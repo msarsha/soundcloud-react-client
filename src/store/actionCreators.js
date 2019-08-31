@@ -1,18 +1,20 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchTracks = () => ({
-	type: actionTypes.FETCH_TRACKS
-});
-
-export const fetchTracksSuccess = (tracks) => ({
+export const fetchTracksSuccess = (tracks, term, nextPage = null) => ({
 	type: actionTypes.FETCH_TRACKS_SUCCESS,
 	payload: {
-		tracks: tracks
+		tracks,
+		term,
+		nextPage
 	}
 });
 
 export const tracksLoading = () => ({
 	type: actionTypes.TRACKS_LOADING
+});
+
+export const nextPage = () => ({
+	type: actionTypes.NEXT_PAGE
 });
 
 export const addRecent = (term) => ({

@@ -7,3 +7,4 @@ export const PERSIST_RECENT = 'PERSIST_RECENT';
 export const LOAD_RECENT = 'LOAD_RECENT';
 
 export const SELECT_TRACK = 'SELECT_TRACK';
+export const NEXT_PAGE = 'NEXT_PAGE';
